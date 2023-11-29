@@ -6,13 +6,13 @@ Group project that utilizes both client and server side API's. This app allows a
 # Table of Content
 
 1. [Description](#description)
-2. [Team Involvement and Breakdown of Tasks](#team)
-2. [Installation](#installation)
-3. [Usage](#usage)
-4. [Credits](#credits)
-5. [License](#license)
-6. [Features](#features)
-7. [Contribute](#contribute)
+2. [Team](#Team)
+3. [Installation](#installation)
+4. [Usage](#usage)
+5. [Credits](#credits)
+6. [License](#license)
+7. [Features](#features)
+8. [Contribute](#contribute)
 
 # Team
 
