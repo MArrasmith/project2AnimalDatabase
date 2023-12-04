@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "animality": "^2.1.4",
+    "axios": "^1.6.2",
     "bcrypt": "^5.0.0",
     "connect-session-sequelize": "^7.1.7",
     "dotenv": "^8.2.0",
