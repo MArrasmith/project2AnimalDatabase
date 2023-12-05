@@ -10,13 +10,13 @@ const withAuth = (req, res, next) => {
   }
 };
 
-Userinfo.hasMany(Search, {
-  foreignKey: 'user_id',
-  onDelete: 'CASCADE'
-});
+// Userinfo.hasMany(Search, {
+//   foreignKey: 'user_id',
+//   onDelete: 'CASCADE'
+// });
 
-Search.belongsTo(Userinfo, {
-  foreignKey: 'user_id'
-});
+// Search.belongsTo(Userinfo, {
+//   foreignKey: 'user_id'
+// });
 
 module.exports = withAuth, { Userinfo , Search };
