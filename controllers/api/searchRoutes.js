@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
   try {
-    const AnimalData
+    const AnimalData = await Animals.findAll();
 
     res.status(200).json(AnimalData);
   } catch (err) {

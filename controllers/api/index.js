@@ -2,7 +2,7 @@ const router = require('express').Router()
 const userRoutes = require('./userRoutes');
 const searchRoutes = require('./searchRoutes');
 const animalRoutes = require('./animalRoutes');
-const animalRoutes = require('./animalRoute');
+//const animalRoutes = require('./animalRoute');
 const funFactRoutes = require('./funFactRoutes');
 
 router.use('/animal', animalRoutes);

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { createOrUpdateAnimal } = require('../../seeds/seeds');
 
-app.post('/animals/search', async (req, res) => {
+router.post('/animals/search', async (req, res) => {
   const { animalName } = req.body;
 
   try {
