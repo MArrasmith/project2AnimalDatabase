@@ -12,4 +12,5 @@ router.use('/search', searchRoutes);
 router.use('/animal', animalRoutes);
 router.use('/fun-fact', funFactRoutes);
 
+
 module.exports = router;

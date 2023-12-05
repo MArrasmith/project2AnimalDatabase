@@ -19,7 +19,12 @@ Search.init(
       },
     },
     animal_id: {
-    }
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'animal',
+        key: 'id',
+      },
+    },
   },
   {
     sequelize,
