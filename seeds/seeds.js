@@ -5,13 +5,28 @@ const { getAnimalData } = require('../services/animalService');
 
 async function createOrUpdateAnimal(animalName) {
   try {
-    const apiAnimalData = await getAnimalData(animalName);
+    const apiAnimalDataArray = await getAnimalData(animalName);
+    console.log(apiAnimalDataArray);
+
+    if (!apiAnimalDataArray || (Array.isArray(apiAnimalDataArray) && apiAnimalDataArray.length === 0)) {
+      throw new Error('Invalid or incomplete data received from the API.');
+    }
+
+    const apiAnimalData = Array.isArray(apiAnimalDataArray) ? apiAnimalDataArray[0] : apiAnimalDataArray;
+
+    if (!apiAnimalData || !apiAnimalData.name || !apiAnimalData.taxonomy || !apiAnimalData.characteristics) {
+      throw new Error('Invalid or incomplete data received from the API.');
+    }
 
     const {
       name,
       taxonomy: { scientific_name },
-      characteristics: { habitat, diet, lifespan },
-    } = apiAnimalData
+      characteristics: { 
+        habitat, 
+        diet, 
+        lifespan 
+      },
+    } = apiAnimalData;
 
     const [animal, created] = await Animal.findOrCreate({
       where: { name },
@@ -26,4 +41,4 @@ async function createOrUpdateAnimal(animalName) {
   }
 }
 
-module.exports = createOrUpdateAnimal;
+module.exports = { createOrUpdateAnimal };
