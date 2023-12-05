@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { Search , Userinfo , Animal } = require('../../models');
-const withAuth = require('../../utils/auth');
+const { Search , Userinfo , Animal } = require('../models');
+const withAuth = require('../utils/auth');
 
 
 // Route to verify that a user is logged in using session information
