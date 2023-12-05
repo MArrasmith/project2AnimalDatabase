@@ -1,11 +1,11 @@
 const axios = require('axios');
 require('dotenv').config();
 
-const BASE_URL = 'https://api.api-ninjas.com/v1/animals?name=';
+const BASE_URL = 'https://api.api-ninjas.com/v1/animals?name=cheetah';
 
 async function getAnimalData(animalName) {
   try {
-    const response = await axios.get(`${BASE_URL}/animals/${animalName}`, {
+    const response = await axios.get(`${BASE_URL}`, {
       headers: {
         'X-Api-Key': process.env.API_KEY,
       },
