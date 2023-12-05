@@ -9,7 +9,7 @@ const sequelize = require('./config/connections');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-app.engine('handlebars', exphbs);
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 app.use(express.json());

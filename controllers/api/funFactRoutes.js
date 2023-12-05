@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const FunFact = require('../../models/FunFact');
 
-router.post('/fun-facts', async (req, res) => {
+router.post('/', async (req, res) => {
   const { animalId, fact } = req.body;
 
   try {
