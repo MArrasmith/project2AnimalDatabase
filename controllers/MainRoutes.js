@@ -6,7 +6,7 @@ const router = require('express').Router();
 // once user logs in they are directed to the search page
 router.get('/', async (req, res) => {
   try {
-   res.render('homepage');
+    res.render('homepage', { layout: false, view: 'Animal Database' });
   } catch (err) {
     res.status(500).json(err);
   }
