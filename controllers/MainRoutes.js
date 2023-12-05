@@ -5,7 +5,9 @@ const withAuth = require('../../utils/auth');
 
 // Route to verify that a user is logged in using session information
 // once user logs in they are directed to the search page
-router.get('/search', withAuth, async (req, res) => {
+
+//router.get('/search', withAuth, async (req, res) => {
+router.get('/search', async (req, res) => {
   try {
     const userData = await userinfo.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
