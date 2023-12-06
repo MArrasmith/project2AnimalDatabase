@@ -20,7 +20,7 @@ Animal.init(
     },
     habitat: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      allowNull: true,
     },
     diet: {
       type: DataTypes.STRING,
@@ -28,7 +28,7 @@ Animal.init(
     },
     lifespan: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
