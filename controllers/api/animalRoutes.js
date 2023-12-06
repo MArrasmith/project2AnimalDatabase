@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 
 
 
-app.post('/animals/search', async (req, res) => {
+router.post('/animals/search', async (req, res) => {
   const { animalName } = req.body;
 
   try {
