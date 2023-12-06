@@ -4,7 +4,7 @@ const Animals = require('../../models/Animal');
 const withAuth = require('../../utils/auth');
 
 // Post a new Fun Fact
-router.post('/fun-facts', withAuth, async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
   const { animalId, fact } = req.body;
   const userId = req.session.user_id;
 
@@ -43,6 +43,8 @@ router.delete('/:id', withAuth, async (req, res) => {
   }
 });
 
+module.exports = router;
+
 /*const router = require('express').Router();
 const FunFact = require('../../models/FunFact');
 
@@ -61,5 +63,3 @@ router.post('/', async (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 });*/
-
-module.exports = router;
