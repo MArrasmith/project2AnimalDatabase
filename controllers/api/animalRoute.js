@@ -2,8 +2,8 @@
 // const { createOrUpdateAnimal } = require('../../seeds/seeds');
 
 
-router.post('/animals/search', async (req, res) => {
-  const { animalName } = req.body;
+//router.post('/animals/search', async (req, res) => {
+  //const { animalName } = req.body;
 
 
 //   try {

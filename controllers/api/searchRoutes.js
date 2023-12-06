@@ -1,8 +1,37 @@
 const router = require('express').Router();
 const { createOrUpdateAnimal } = require('../../seeds/seeds');
-const { Search, Animals, FunFact, Userinfo } = require('../../models');
-const { getAnimalData } = require('../../services/animalService'); // Assuming you have a service to fetch animal data
+const { Search, Animal, FunFact, Userinfo } = require('../../models');
+const { getAnimalData } = require('../../services/animalService');
+const animality = require('animality');
 //const withAuth = require('../../utils/auth');
+
+const animalEquivalences = {
+  'redpanda': 'Red Panda',
+};
+
+async function getRandomFact(animal) {
+  try {
+    const equivalentName = animalEquivalences[animal] || animal;
+    const animalData = await animality.getAsync(equivalentName);
+    console.log('Animal Data:', animalData);
+    return animalData.fact;
+  } catch (error) {
+    console.error('Error fetching random fact for', animal, error.message);
+    throw error;
+  }
+}
+
+const animalityAnimals = [
+  'bird',
+  'redpanda',
+  'koala',
+  'kangaroo',
+  'duck',
+  'axolotl',
+  'capybara',
+  'hedgehog',
+  'narwhal'
+];
 
 // Search for an animal and get fun facts
 router.post('/', async (req, res) => {
@@ -11,42 +40,66 @@ router.post('/', async (req, res) => {
   try {
     const animals = await createOrUpdateAnimal(animalName);
 
-    const funFactsPromises = animals.map(async (animal) => {
-      return FunFact.findAll({
-        where: { animal_id: animal.id },
-      });
+    const animalsLowerCase = animals.map(animal => animal.name.toLowerCase());
+    const animalityAnimalsLowerCase = animalityAnimals.map(animal => animal.toLowerCase());
+
+    const filteredAnimals = animalsLowerCase.filter(animalName => animalityAnimalsLowerCase.includes(animalName));
+
+    console.log('Filtered Animals:', filteredAnimals); // Add this line for debugging
+
+    const randomFactsPromises = filteredAnimals.map(async (animalName) => {
+      const animal = animals.find(animal => animal.name.toLowerCase() === animalName);
+      console.log('Processing animal:', animalName);
+    
+      if (animal && animal.id) {
+        console.log('Processing animal with ID:', animal.id);
+        const existingFact = await FunFact.findOne({
+          where: { animal_id: animal.id },
+        });
+    
+        if (!existingFact) {
+          const fact = await getRandomFact(animal.name);
+          const animalId = animal.id;
+    
+          const createdFunFact = await FunFact.create({
+            animal_id: animalId,
+            fact: fact,
+          });
+    
+          console.log('Fun fact created for animal with ID:', animalId);
+          return { ...createdFunFact.toJSON(), animalId };
+        } else {
+          console.log('Existing fact found for animal with ID:', animal.id);
+          return { ...existingFact.toJSON(), animalId: animal.id };
+        }
+      } else {
+        console.error('Animal ID is undefined for', animalName);
+        return null;  // or handle the case as appropriate
+      }
     });
 
-    const funFacts = await Promise.all(funFactsPromises);
-    // Search for the animal in the API and update/create in the database
-    /*const apiAnimalDataArray = await getAnimalData(animalName);
-    console.log('API Response:', apiAnimalDataArray);
-    if (!apiAnimalDataArray || apiAnimalDataArray.length === 0) {
-      throw new Error('API did not return valid data for the given animal name.');
-    }*/
+    const createdFunFacts = await Promise.all(randomFactsPromises);
+    const allFunFacts = createdFunFacts.filter(fact => fact !== null);
 
-    /*const animals = [];
-    for (const apiAnimalData of apiAnimalDataArray) {
-      const animal = await createOrUpdateAnimal(apiAnimalData);
-      animals.push(animal);
-    }*/
+    res.status(200).json({ success: true, animals, funFacts: allFunFacts });
 
-    /*const animals = await createOrUpdateAnimal(apiAnimalDataArray);
-
-    const funFactsPromises = animals.map(async (animal) => {
-      return FunFact.findAll({
-        where: { animal_id: animal.id },
-      });
-    });
-
-    const funFacts = await Promise.all(funFactsPromises);*/
-
-    // Get fun facts for the animal
-    /*const funFacts = await FunFact.findAll({
-      where: { animal_id: animals.length > 0 ? animals[0].id : null },
+    /*const modifiedAnimals = animals.map(animal => {
+      const funFactsForAnimal = createdFunFacts.filter(fact => fact && fact.animalId === animal.id);
+      return {
+        ...animal,
+        funFacts: funFactsForAnimal,
+      };
     });*/
 
-    res.status(200).json({ success: true, animals, funFacts });
+    /*const allFunFactsPromises = animals.map(async (animal) => {
+      return FunFact.findAll({
+        where: { animal_id: animal.id },
+      });
+    });*/
+
+   // const allFunFacts = await Promise.all(allFunFactsPromises);
+
+    //res.status(200).json({ success: true, animals: modifiedAnimals });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }

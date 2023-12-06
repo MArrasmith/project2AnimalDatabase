@@ -1,7 +1,7 @@
 const axios = require('axios');
 require('dotenv').config();
 
-let name = 'bear';
+let name = 'red panda';
 
 const BASE_URL = 'https://api.api-ninjas.com/v1/animals?name=' + name;
 
