@@ -33,11 +33,12 @@ const animalityAnimals = [
   'narwhal'
 ];
 
-// Search for an animal and get fun facts
 router.get('/', async (req, res) => {
-  const { animalName } = req.body;
+  try{
+    const loggedIn = req.session.logged_in;
 
-  try {
+    const animalName = req.query.animalName;
+
     const animals = await createOrUpdateAnimal(animalName);
 
     const animalsLowerCase = animals.map(animal => animal.name.toLowerCase());
@@ -73,11 +74,8 @@ router.get('/', async (req, res) => {
     });
 
     const createdFunFacts = await Promise.all(randomFactsPromises);
-    const allFunFacts = createdFunFacts.filter(fact => fact !== null);
 
-    const loggedIn = req.session.logged_in;
-
-    res.render('animalfacts', { layout: false, animal: animals[0], funFacts: allFunFacts });
+    res.render('animalfacts', { layout: false, animal: animals[0], funFacts: createdFunFacts });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }

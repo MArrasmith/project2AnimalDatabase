@@ -8,11 +8,14 @@ async function createOrUpdateAnimal(animalName) {
   try {
     const apiAnimalDataArray = await getAnimalData(animalName);
 
+    console.log('API Animal Data:', apiAnimalDataArray);
+
     if (!apiAnimalDataArray || apiAnimalDataArray.length === 0) {
       throw new Error('Invalid or incomplete data received from the API.');
     }
 
     const animalsPromises = apiAnimalDataArray.map(async (apiAnimalData) => {
+      console.log('API Animal Data for an Animal:', apiAnimalData);
       if (!apiAnimalData || !apiAnimalData.name || !apiAnimalData.taxonomy || !apiAnimalData.characteristics) {
         throw new Error('Invalid or incomplete data received from the API.');
       }
