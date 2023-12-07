@@ -24,7 +24,7 @@
   <div>
     <h2>Add New Fun Fact</h2>
     {{#if loggedIn}}
-      <form action="/api/funfacts" method="POST" id="addFunFactForm">
+      <form action="/api/funfact" method="POST" id="addFunFactForm">
         <input type="hidden" name="animalId" value="{{ animal.id }}">
         <label for="fact">Fact:</label>
         <textarea name="fact" required></textarea>
