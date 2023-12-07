@@ -4,8 +4,6 @@ const searchRoutes = require('./searchRoutes');
 const animalRoutes = require('./animalRoutes');
 const funFactRoutes = require('./funFactRoutes');
 
-// const animalRoutes = require('./animalRoute');
-// router.use('/animal', animalRoutes);
 
 router.use('/users', userRoutes);
 router.use('/search', searchRoutes);
