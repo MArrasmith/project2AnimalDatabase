@@ -4,7 +4,6 @@ const exphbs = require('express-handlebars');
 const session = require('express-session');
 const crypto = require('crypto');
 const routes = require('./controllers');
-//const helpers = require('./utils/helpers');
 const morgan = require('morgan');
 
 const sequelize = require('./config/connections');

@@ -1,11 +1,7 @@
 const axios = require('axios');
 require('dotenv').config();
 
-
-//let name = 'raccoon';
-
-
-// const BASE_URL = 'https://api.api-ninjas.com/v1/animals?name=' + name;
+// function to get searched animal data from animal api
 const BASE_URL = 'https://api.api-ninjas.com/v1/animals?name=';
 
 async function getAnimalData(animalName) {

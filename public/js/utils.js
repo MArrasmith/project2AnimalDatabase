@@ -7,6 +7,7 @@ const handleuserInput = function (event) {
         }
 };
 
+// allows search bar functionality for the homepage
 const doSearch = async function() {
     const enteredAnimal = animalInput.value.trim();
     
@@ -22,6 +23,7 @@ const doSearch = async function() {
 
             if (response.ok) {
                 console.log(response);
+                saveSearchQuery(enteredAnimal);
                 window.location.href = `/api/search?animalName=${enteredAnimal}`;
             } else {
                 console.warn(response);
@@ -31,6 +33,10 @@ const doSearch = async function() {
         }
     }
 
+};
+
+const saveSearchQuery = (query) => {
+    localStorage.setItem('savedSearchQuery', query);
 };
 
 animalInput.addEventListener("keyup", handleuserInput)
