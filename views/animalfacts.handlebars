@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
   <title>Animal Fun Facts</title>
 </head>
 
@@ -23,12 +23,16 @@
   <!-- Add New Fun Fact Form -->
   <div>
     <h2>Add New Fun Fact</h2>
-    <form action="/api/funfact" method="POST" id="addFunFactForm">
-      <input type="hidden" name="animalId" value="{{ animal.id }}">
-      <label for="fact">Fact:</label>
-      <input type="text" name="fact" required>
-      <button type="submit">Add Fun Fact</button>
-    </form>
+    {{#if loggedIn}}
+      <form action="/api/funfact" method="POST" id="addFunFactForm">
+        <input type="hidden" name="animalId" value="{{ animal.id }}">
+        <label for="fact">Fact:</label>
+        <textarea name="fact" required></textarea>
+        <button type="submit">Add Fun Fact</button>
+      </form>
+    {{else}}
+      <p>Please <a href="/api/users/login">log in or sign up</a> to add your own fun fact about this animal!</p>
+    {{/if}}
   </div>
 
   <!-- Display Existing Fun Facts -->

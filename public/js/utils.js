@@ -1,29 +1,37 @@
-let animalInput = document.getElementById("animal-input")
-let searchbutton = document.querySelector("#search-button")
+const animalInput = document.getElementById("animal-input")
+const searchbutton = document.querySelector("#search-button")
 
-let handleuserInput = function(event) {    
+const handleuserInput = function (event) {    
         if (event.key === "Enter"){
-            doSearch()      
+            doSearch();     
+        }
+};
+
+const doSearch = async function() {
+    const enteredAnimal = animalInput.value.trim();
+    
+    if (enteredAnimal !== "") {
+        console.log(enteredAnimal);
+        try {
+            const response = await fetch(`/api/search?animalName=${enteredAnimal}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                console.log(response);
+                window.location.href = `/api/search?animalName=${enteredAnimal}`;
+            } else {
+                console.warn(response);
+            }
+        } catch (error) {
+            console.error('Error making API request:', error.message);
         }
     }
 
-let doSearch = async function() {
-    const response = await fetch('/api/search', {
-        method: 'POST',
-        body: JSON.stringify({ animalName: animalInput.value }),
-        headers: { 'Content-Type': 'application/json' },
-      });
-      
-      if (response.ok) {
-        // If successful, redirect the browser to the profile page
-        // document.location.replace('/profile');
-        console.log(response)
-      } else {
-        console.warn(response)
-      }
-
-}
+};
 
 animalInput.addEventListener("keyup", handleuserInput)
 searchbutton.addEventListener("click", doSearch)
-
