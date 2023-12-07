@@ -24,13 +24,22 @@ h1 {
 }
 
 .container {
-    height: 400px;
+    /*this was removed so the animal names fit on the box*/
+    /* height: 400px; */
     width: 25%;
     margin: 30px auto;
     border: 10px solid black;
     background-color: tan;
     font-size: x-large;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    background-color: green;
+}
+
+button:hover {
+    opacity: 25%;
 }
 
 @media screen and (max-width: 768px) {

@@ -82,9 +82,11 @@ router.post('/', async (req, res) => {
     const allFunFacts = createdFunFacts.filter(fact => fact !== null);
 
     console.log('Animal Object:', animals[0]);
+    //Use this to render raw HTML data
     res.render('animalfacts', { layout: false, animal: animals[0], funFacts: allFunFacts });
 
-    //res.status(200).json({ success: true, animals, funFacts: allFunFacts });
+    //Use this to render json data
+    // res.status(200).json({ success: true, animals, funFacts: allFunFacts });
 
     /*const modifiedAnimals = animals.map(animal => {
       const funFactsForAnimal = createdFunFacts.filter(fact => fact && fact.animalId === animal.id);
