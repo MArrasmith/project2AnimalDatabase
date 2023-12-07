@@ -1,38 +1,42 @@
 # Animal Database
 
 # Description
-Group project that utilizes both client and server side API's. This app allows a user to search for any animal of their choosing and Name and be presented and information and facts about an animal. There is also an added function that will allow a user to add their own comments and facts about any animal. We have implemented Handlebars.js to handle the formatting of the html pages and Sequelize to handle the server side functions.
+
+This application allows a user to search for any animal of their choosing by Name and be presented with information and a few facts about that animal. We are planning on adding a function in the future that will allow a user to add their own comments and facts about any animal. We have implemented Handlebars.js to handle the formatting of the html pages and Sequelize to handle the server side functions. Axios is used as an additional HTTP client for the client side and animate on scroll will be used in the future for animating our fact boxes when a user scrolls through the page.
 
 # Table of Content
 
 1. [Description](#description)
-2. [Team](#Team)
+2. [Team](#team)
 3. [Installation](#installation)
 4. [Usage](#usage)
 5. [Credits](#credits)
 6. [License](#license)
-7. [Features](#features)
-8. [Contribute](#contribute)
+
 
 # Team
 
-Elliott - 
-Michael - 
-Zack - 
+Elliott - [GitHub Account](https://github.com/Silverfoot42)
+Michael - [GitHub Account](https://github.com/MArrasmith)
+Zack - [GitHub Account](https://github.com/ZBurnell)
+
 
 # Installation
+ 
+ You can follow this link to our deployed Heroku application -> https://animaldatabaseproject2-8f061804621f.herokuapp.com/
 
-
-# Usage
+ If you would like to see how the application works on the serverside you can clone our repo into VS Code, Run an "NPM INSTALL" in the terminal, and run "NPM START". 
 
 * Requires these packages before initialization
 * [Sequelize](https://www.npmjs.com/package/sequelize)
 * [Node.JS](https://nodejs.org/en)
 * [Handlebars](https://handlebarsjs.com/) 
-    
+* [Axios](https://axios-http.com/)
+   
 
 # Credits
 
+[Animality](https://animality.xyz/) was useed along side [API Ninjas](https://api-ninjas.com) for all of our API needs. Including all of the data and fun facts pulled into our application. ChatGPT and Xpert Learning assistant were used for debugging and questions regarding syntax.
 
 
 # License
@@ -61,8 +65,5 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     
-   
-# Features
 
 
-# Contribute
