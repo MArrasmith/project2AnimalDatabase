@@ -81,7 +81,10 @@ router.post('/', async (req, res) => {
     const createdFunFacts = await Promise.all(randomFactsPromises);
     const allFunFacts = createdFunFacts.filter(fact => fact !== null);
 
-    res.status(200).json({ success: true, animals, funFacts: allFunFacts });
+    console.log('Animal Object:', animals[0]);
+    res.render('animalfacts', { layout: false, animal: animals[0], funFacts: allFunFacts });
+
+    //res.status(200).json({ success: true, animals, funFacts: allFunFacts });
 
     /*const modifiedAnimals = animals.map(animal => {
       const funFactsForAnimal = createdFunFacts.filter(fact => fact && fact.animalId === animal.id);
