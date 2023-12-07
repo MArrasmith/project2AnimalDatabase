@@ -1,14 +1,14 @@
 const router = require('express').Router();
 const { createOrUpdateAnimal } = require('../../seeds/seeds');
-const { Search, Animal, FunFact, Userinfo } = require('../../models');
-const { getAnimalData } = require('../../services/animalService');
+const { FunFact } = require('../../models');
 const animality = require('animality');
-const withAuth = require('../../utils/auth');
 
+// attempt to get the differences in red panda from the api and the package to equate
 const animalEquivalences = {
   'redpanda': 'Red Panda',
 };
 
+//gets random fact from animality package
 async function getRandomFact(animal) {
   try {
     const equivalentName = animalEquivalences[animal] || animal;
@@ -21,6 +21,7 @@ async function getRandomFact(animal) {
   }
 }
 
+// allows the other animals from the animal api to be searched and not just the ones shared by the animality package except for red panda
 const animalityAnimals = [
   'bird',
   'redpanda',
@@ -33,6 +34,7 @@ const animalityAnimals = [
   'narwhal'
 ];
 
+// gets data from the animal api and filter the animality animals so that they match the case sensitivity of the animal api and so that data from the animal api will show up for both animals included in animality and not also loads random fact from the animality package
 router.get('/', async (req, res) => {
   try{
     const loggedIn = req.session.logged_in;

@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const FunFact = require('../../models/FunFact');
-const Animals = require('../../models/Animal');
 const withAuth = require('../../utils/auth');
 
 // Post a new Fun Fact
@@ -23,7 +22,7 @@ router.post('/', withAuth, async (req, res) => {
 });
 
 // Delete a Fact from the Animals page
-router.delete('/:id', withAuth, async (req, res) => {
+/*router.delete('/:id', withAuth, async (req, res) => {
   try {
     const FactData = await Animals.destroy({
       where: {
@@ -41,6 +40,6 @@ router.delete('/:id', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-});
+});*/
 
 module.exports = router;
