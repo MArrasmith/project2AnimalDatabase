@@ -3,10 +3,10 @@ const Animal = require('../models/Animal');
 const FunFact = require('../models/FunFact')
 const { getAnimalData } = require('../services/animalService');
 
+// Used to add a animal to the database or update an existing one
 async function createOrUpdateAnimal(animalName) {
   try {
     const apiAnimalDataArray = await getAnimalData(animalName);
-    console.log(apiAnimalDataArray);
 
     if (!apiAnimalDataArray || apiAnimalDataArray.length === 0) {
       throw new Error('Invalid or incomplete data received from the API.');
