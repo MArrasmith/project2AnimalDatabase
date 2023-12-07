@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Animal Fun Facts</title>
+</head>
+
+<body>
+  <h1>{{ animal.dataValues.name }} Fun Facts</h1>
+
+  <!-- Display Animal Information -->
+  <div>
+    <h2>Animal Information</h2>
+    {{log animal}}
+    <p>Scientific Name: {{ animal.dataValues.scientific_name }}</p>
+    <p>Habitat: {{ animal.dataValues.habitat }}</p>
+    <p>Diet: {{ animal.dataValues.diet }}</p>
+    <p>Lifespan: {{ animal.dataValues.lifespan }}</p>
+  </div>
+
+  <!-- Add New Fun Fact Form -->
+  <div>
+    <h2>Add New Fun Fact</h2>
+    <form action="/api/funfacts" method="POST" id="addFunFactForm">
+      <input type="hidden" name="animalId" value="{{ animal.id }}">
+      <label for="fact">Fact:</label>
+      <input type="text" name="fact" required>
+      <button type="submit">Add Fun Fact</button>
+    </form>
+  </div>
+
+  <!-- Display Existing Fun Facts -->
+  <div>
+    <h2>Existing Fun Facts</h2>
+    <ul>
+      {{#each funFacts}}
+      <li>
+        <p>{{ this.fact }}</p>
+        <form action="/api/funfacts/{{ this.id }}" method="POST" class="delete-fact-form">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit">Delete</button>
+        </form>
+      </li>
+      {{/each}}
+    </ul>
+  </div>
+</body>
+
+</html>
